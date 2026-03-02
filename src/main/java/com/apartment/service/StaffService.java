@@ -1,15 +1,14 @@
 package com.apartment.service;
 
+import com.apartment.dto.StaffCreateDto;
 import com.apartment.model.Staff;
-import java.util.Optional;
 
-/**
- * Interface định nghĩa nghiệp vụ liên quan đến Staff (nhân viên).
- */
+import java.util.List;
+
 public interface StaffService {
+    void addStaff(StaffCreateDto dto);
 
-    /**
-     * Tìm thông tin Staff theo user_id.
-     */
-    Optional<Staff> findByUserId(Integer userId);
+    List<Staff> getAllStaff();
+
+    java.util.Optional<Staff> findByUserId(Integer userId);
 }
