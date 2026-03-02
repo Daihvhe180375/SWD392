@@ -1,0 +1,520 @@
+/* =====================================================
+   ApartmentManagement - Custom CSS
+   Bổ sung cho Bootstrap 5
+   ===================================================== */
+
+/* ===== FONT & BASE ===== */
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f8f9fb;
+    color: #1e293b;
+}
+
+/* ===== AUTH PAGES (Login / Register) ===== */
+
+body.auth-page {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #6b73ff 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Nền trang trí với các hình tròn mờ */
+.auth-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.auth-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    animation: floatShape 6s ease-in-out infinite;
+}
+
+.auth-shape-1 {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    right: -80px;
+    animation-delay: 0s;
+}
+
+.auth-shape-2 {
+    width: 200px;
+    height: 200px;
+    bottom: 50px;
+    left: -60px;
+    animation-delay: 2s;
+}
+
+.auth-shape-3 {
+    width: 150px;
+    height: 150px;
+    top: 50%;
+    left: 60%;
+    animation-delay: 4s;
+}
+
+@keyframes floatShape {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Card đăng nhập */
+.auth-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 420px;
+    padding: 1rem;
+}
+
+/* Card đăng ký (rộng hơn) */
+.auth-wrapper-wide {
+    max-width: 600px;
+}
+
+.auth-card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2) !important;
+}
+
+/* Header của auth card */
+.auth-card-header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: 2rem 2rem 1.5rem;
+    color: white;
+}
+
+.auth-logo {
+    width: 70px;
+    height: 70px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto;
+    border: 3px solid rgba(255,255,255,0.4);
+    transition: transform 0.3s ease;
+}
+
+.auth-logo:hover {
+    transform: rotate(10deg) scale(1.05);
+}
+
+.auth-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.auth-subtitle {
+    opacity: 0.85;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+/* Footer của auth card */
+.auth-card-footer {
+    background-color: #f8f9fb;
+    padding: 1rem;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Nút submit trong auth form */
+.btn-auth {
+    padding: 0.7rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-auth:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+    background: linear-gradient(135deg, #5a6fd8, #6a3d95);
+}
+
+/* Input group style chung */
+.input-group-text {
+    background-color: #f8f9fb;
+    border-right: 0;
+    color: #94a3b8;
+}
+
+.form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+/* ===== NAVBAR ===== */
+
+#mainNavbar {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    padding: 0.75rem 0;
+}
+
+.brand-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: white;
+}
+
+.brand-text {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: white;
+}
+
+/* Avatar nhỏ trên navbar */
+.nav-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.nav-avatar-placeholder {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.875rem;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.nav-username {
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.nav-user-btn {
+    text-decoration: none;
+    color: white !important;
+    padding: 0.4rem 0.7rem;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.nav-user-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.nav-user-btn::after {
+    color: rgba(255,255,255,0.6);
+}
+
+/* ===== APP PAGES (Profile) ===== */
+
+body.app-page {
+    background-color: #f1f5f9;
+    min-height: 100vh;
+}
+
+/* Tiêu đề trang */
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+/* Card profile cột trái */
+.profile-card {
+    border: none;
+    border-radius: 16px;
+}
+
+/* Avatar tròn 100px */
+.profile-avatar-wrapper {
+    display: inline-block;
+    position: relative;
+}
+
+.profile-avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.05);
+}
+
+/* Avatar mặc định khi không có URL */
+.profile-avatar-default {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    border: 4px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin: 0 auto;
+}
+
+/* Badge Role - màu theo requirements */
+.role-badge {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Admin = đỏ */
+.role-admin {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}
+
+/* Staff = xanh dương */
+.role-staff {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+}
+
+/* Resident = xanh lá */
+.role-resident {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+}
+
+/* Manager = tím */
+.role-manager {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+}
+
+/* Trạng thái active/inactive */
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+.status-dot.active {
+    background-color: #10b981;
+}
+
+.status-dot.inactive {
+    background-color: #ef4444;
+    animation: none;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Header section card */
+.profile-section-header {
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    border-bottom: 2px solid #e2e8f0;
+    padding: 1rem 1.5rem;
+}
+
+.profile-section-header h5 {
+    color: #475569;
+    font-weight: 600;
+}
+
+/* Section Resident: xanh lá nhạt */
+.profile-section-resident {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    border-bottom-color: #bbf7d0;
+}
+
+.profile-section-resident h5 {
+    color: #166534;
+}
+
+/* Section Staff: xanh dương nhạt */
+.profile-section-staff {
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
+    border-bottom-color: #bfdbfe;
+}
+
+.profile-section-staff h5 {
+    color: #1e40af;
+}
+
+/* Labels và Values trong profile info */
+.info-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.info-value {
+    font-size: 0.95rem;
+    color: #334155;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+/* Badge số phòng */
+.apartment-badge {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Trường readonly trong Edit Profile sidebar */
+.readonly-field {
+    background: #f8f9fb;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+}
+
+/* Card shadows */
+.card {
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 16px;
+}
+
+.card-header {
+    border-radius: 16px 16px 0 0 !important;
+}
+
+/* Button styles */
+.btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5a6fd8, #6a3d95);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 0.5rem;
+}
+
+.dropdown-item {
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f5f9;
+}
+
+/* Alert styles */
+.alert {
+    border-radius: 12px;
+    border: none;
+}
+
+/* Form focus states */
+.form-control, .input-group-text {
+    border-radius: 8px;
+}
+
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    border-radius: 0 8px 8px 0;
+}
+
+.input-group > :not(:last-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    border-radius: 8px 0 0 8px;
+}
+
+/* Scrollbar tùy chỉnh */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .auth-wrapper-wide {
+        max-width: 100%;
+    }
+
+    .page-title {
+        font-size: 1.2rem;
+    }
+
+    .profile-avatar, .profile-avatar-default {
+        width: 80px;
+        height: 80px;
+    }
+}
