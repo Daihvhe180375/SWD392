@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo Thông Báo | ApartmentManagement</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style th:inline="css">
+        body { font-family: 'Inter', sans-serif; background: #f0f2f5; margin: 0; }
+        .sidebar { width: 260px; min-height: 100vh; background: linear-gradient(180deg, #1e1b4b 0%, #312e81 100%); position: fixed; top: 0; left: 0; display: flex; flex-direction: column; z-index: 100; box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15); }
+        .sidebar-brand { padding: 24px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .sidebar-brand-text { color: white; font-weight: 700; font-size: 16px; }
+        .sidebar-nav { flex: 1; padding: 12px 0; }
+        .sidebar-nav-item { display: flex; align-items: center; gap: 12px; padding: 11px 20px; color: rgba(255, 255, 255, 0.75); text-decoration: none; font-size: 14px; font-weight: 500; margin: 2px 8px; border-radius: 8px; transition: all 0.2s; }
+        .sidebar-nav-item:hover, .sidebar-nav-item.active { background: rgba(255, 255, 255, 0.18); color: white; }
+        .main-content { margin-left: 260px; min-height: 100vh; display: flex; flex-direction: column; }
+        .topbar { background: white; padding: 16px 32px; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; }
+        .page-body { padding: 32px; }
+        .card { border: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .form-label { font-weight: 600; color: #374151; }
+        .btn-primary { background: #4f46e5; border: none; padding: 10px 24px; border-radius: 8px; font-weight: 600; }
+        .btn-primary:hover { background: #4338ca; }
+    </style>
+</head>
+
+<body>
+<div class="sidebar">
+    <a class="sidebar-brand" th:href="@{/home}">
+        <div style="color:white;"><i class="fas fa-building fa-lg"></i></div>
+        <span class="sidebar-brand-text">ApartmentMgmt</span>
+    </a>
+    <nav class="sidebar-nav">
+        <a th:href="@{/home}" class="sidebar-nav-item">
+            <i class="fas fa-home"></i> Trang Chủ
+        </a>
+        <a th:href="@{/create_announcement}" class="sidebar-nav-item active">
+            <i class="fas fa-bell"></i> Thông Báo
+        </a>
+        <a th:href="@{/logout}" class="sidebar-nav-item mt-auto text-danger">
+            <i class="fas fa-sign-out-alt"></i> Đăng Xuất
+        </a>
+    </nav>
+</div>
+
+<div class="main-content">
+    <div class="topbar">
+        <div>
+            <h4 class="mb-0" style="font-weight: 700; color: #1e1b4b;">Tạo Thông Báo Mới</h4>
+            <small class="text-muted">Gửi thông báo đến toàn thể cư dân</small>
+        </div>
+    </div>
+
+    <div class="page-body">
+        <div class="card">
+            <div class="card-body p-4">
+                <form th:action="@{/create_announcement}" th:object="${announcement}" method="post">
+                    <div class="mb-4">
+                        <label for="priority" class="form-label">Mức độ ưu tiên</label>
+                        <select th:field="*{priority}" id="priority" class="form-select">
+                            <option value="1">Thấp</option>
+                            <option value="2">Trung bình</option>
+                            <option value="3">Cao (Quan trọng)</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="title" class="form-label">Tiêu đề thông báo</label>
+                        <input type="text" th:field="*{title}" id="title" class="form-control"
+                               placeholder="VD: Thông báo bảo trì điện nước..." required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="content" class="form-label">Nội dung chi tiết</label>
+                        <textarea th:field="*{content}" id="content" class="form-control" rows="8"
+                                  placeholder="Nhập nội dung thông báo tại đây..." required></textarea>
+                    </div>
+
+                    <div class="d-flex gap-2 justify-content-end">
+                        <a th:href="@{/home}" class="btn btn-light border px-4" style="border-radius: 8px;">Hủy</a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane me-2"></i> Đăng thông báo
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

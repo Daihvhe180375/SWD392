@@ -1,5 +1,6 @@
 package com.apartment.dto;
 
+import com.apartment.model.Staff;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,5 +12,6 @@ public class AnnoucementDTO {
 
     private Date createdAt;
 
-    
+    private int priority;
+//    private Staff staff;
 }
