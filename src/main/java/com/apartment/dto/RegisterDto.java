@@ -32,6 +32,6 @@ public class RegisterDto {
     @Size(min = 2, max = 150, message = "Họ và tên phải từ 2 đến 150 ký tự")
     private String fullName;
 
-    @Pattern(regexp = "[0-9]{9,11}", message = "Số điện thoại phải từ 9 đến 11 chữ số")
+    @Pattern(regexp = "(^$|[0-9]{9,11})", message = "Số điện thoại phải từ 9 đến 11 chữ số")
     private String phone;
 }
