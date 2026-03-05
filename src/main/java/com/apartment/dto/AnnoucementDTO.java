@@ -13,5 +13,4 @@ public class AnnoucementDTO {
     private Date createdAt;
 
     private int priority;
-//    private Staff staff;
 }
