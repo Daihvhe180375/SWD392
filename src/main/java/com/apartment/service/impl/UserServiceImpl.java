@@ -6,6 +6,7 @@ import com.apartment.model.Resident;
 import com.apartment.model.Role;
 import com.apartment.model.Users;
 import com.apartment.repository.ResidentRepository;
+import com.apartment.repository.RoleRepository;
 import com.apartment.repository.UsersRepository;
 import com.apartment.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private ResidentRepository residentRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     /**
      * Xác thực đăng nhập: tìm user theo username, so sánh password plain text.
@@ -91,26 +95,28 @@ public class UserServiceImpl implements UserService {
         Users newUser = new Users();
         newUser.setUsername(dto.getUsername());
         newUser.setEmail(dto.getEmail());
-
-        // Lưu password dạng plain text (không mã hoá)
         newUser.setPassword(dto.getPassword());
-
         newUser.setFullName(dto.getFullName());
-        newUser.setPhone(dto.getPhone());
+
+        // Convert chuỗi rỗng "" thành null để tránh lỗi DB constraint
+        String phone = dto.getPhone();
+        newUser.setPhone((phone != null && !phone.trim().isEmpty()) ? phone.trim() : null);
         newUser.setIsActive(true);
         newUser.setCreatedDate(LocalDateTime.now());
 
         // Set role mặc định là Resident (role_id = 3)
-        Role residentRole = new Role();
-        residentRole.setRoleId(3); // Giá trị cố định theo yêu cầu
+        // Dùng getReferenceById để JPA nhận ra đây là managed entity có sẵn trong DB
+        Role residentRole = roleRepository.getReferenceById(3);
         newUser.setRole(residentRole);
 
         // Lưu user vào DB
         Users savedUser = usersRepository.save(newUser);
 
         // Tạo bản ghi Resident liên kết với user vừa tạo
+        // id_card để "" vì DB có NOT NULL constraint; admin sẽ cập nhật sau
         Resident newResident = new Resident();
         newResident.setUser(savedUser);
+        newResident.setIdCard("");
         residentRepository.save(newResident);
     }
 
