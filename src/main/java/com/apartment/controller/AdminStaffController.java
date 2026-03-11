@@ -1,6 +1,7 @@
 package com.apartment.controller;
 
 import com.apartment.dto.StaffCreateDto;
+import com.apartment.dto.StaffResponseDto;
 import com.apartment.model.Role;
 import com.apartment.model.Staff;
 import com.apartment.service.RoleService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -55,9 +57,13 @@ public class AdminStaffController {
         return ResponseEntity.ok(roleService.getAllRoles());
     }
 
-    // Lấy danh sách tất cả nhân viên
+    // Lấy danh sách tất cả nhân viên - trả về DTO để tránh lỗi lazy-load JSON
     @GetMapping("/staff")
-    public ResponseEntity<List<Staff>> getAllStaff() {
-        return ResponseEntity.ok(staffService.getAllStaff());
+    public ResponseEntity<List<StaffResponseDto>> getAllStaff() {
+        List<StaffResponseDto> result = staffService.getAllStaff()
+                .stream()
+                .map(StaffResponseDto::from)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(result);
     }
 }

@@ -10,7 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class RegisterDto {
+public class  RegisterDto {
 
     @NotBlank(message = "Tên đăng nhập không được để trống")
     @Size(min = 3, max = 50, message = "Tên đăng nhập phải từ 3 đến 50 ký tự")

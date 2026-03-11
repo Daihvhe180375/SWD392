@@ -9,6 +9,7 @@ import com.apartment.repository.StaffRepository;
 import com.apartment.repository.UsersRepository;
 import com.apartment.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +28,9 @@ public class StaffServiceImpl implements StaffService {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     @Override
     @Transactional
     public void addStaff(StaffCreateDto dto) {
@@ -42,7 +46,7 @@ public class StaffServiceImpl implements StaffService {
 
         Users user = new Users();
         user.setUsername(dto.getUsername());
-        user.setPassword(dto.getPassword()); // Giữ nguyên plain text theo trạng thái hiện tại của dự án
+        user.setPassword(passwordEncoder.encode(dto.getPassword())); // Mã hóa BCrypt
         user.setEmail(dto.getEmail());
         user.setFullName(dto.getFullName());
         user.setPhone(dto.getPhone());
