@@ -22,4 +22,4 @@ public class ApartmentManagementApplication {
 		SpringApplication.run(ApartmentManagementApplication.class, args);
 	}
 
-}
+} 

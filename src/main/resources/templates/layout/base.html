@@ -20,7 +20,7 @@
 
     <!-- ===== NAVBAR ===== -->
     <!-- Hiển thị navbar chỉ khi đã đăng nhập (session currentUser tồn tại) -->
-    <nav class="navbar navbar-expand-lg navbar-dark" id="mainNavbar" th:if="${session.currentUser != null}">
+    <nav class="navbar navbar-expand-lg navbar-dark" id="mainNavbar" th:if="${session.loggedUser != null}">
         <div class="container">
             <!-- Logo & Tên hệ thống -->
             <a class="navbar-brand d-flex align-items-center gap-2" th:href="@{/profile}">
@@ -46,23 +46,23 @@
                 </ul>
 
                 <!-- Dropdown avatar phải -->
-                <div class="dropdown" th:if="${session.currentUser != null}">
+                <div class="dropdown" th:if="${session.loggedUser != null}">
                     <button class="btn btn-link nav-user-btn dropdown-toggle d-flex align-items-center gap-2"
                         type="button" data-bs-toggle="dropdown">
                         <!-- Avatar nhỏ trên navbar -->
-                        <img th:if="${session.currentUser.avatar != null and !#strings.isEmpty(session.currentUser.avatar)}"
-                            th:src="${session.currentUser.avatar}" class="nav-avatar" alt="Avatar">
-                        <div th:unless="${session.currentUser.avatar != null and !#strings.isEmpty(session.currentUser.avatar)}"
+                        <img th:if="${session.loggedUser.avatar != null and !#strings.isEmpty(session.loggedUser.avatar)}"
+                            th:src="${session.loggedUser.avatar}" class="nav-avatar" alt="Avatar">
+                        <div th:unless="${session.loggedUser.avatar != null and !#strings.isEmpty(session.loggedUser.avatar)}"
                             class="nav-avatar-placeholder">
                             <i class="fas fa-user"></i>
                         </div>
-                        <span class="nav-username" th:text="${session.currentUser.fullName}">Họ Tên</span>
+                        <span class="nav-username" th:text="${session.loggedUser.fullName}">Họ Tên</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end shadow">
                         <li>
                             <div class="dropdown-header">
                                 <small class="text-muted"
-                                    th:text="'@' + ${session.currentUser.username}">@username</small>
+                                    th:text="'@' + ${session.loggedUser.username}">@username</small>
                             </div>
                         </li>
                         <li>
